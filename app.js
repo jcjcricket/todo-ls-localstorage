@@ -1,5 +1,5 @@
 const form = document.querySelector('#task-form');
-const taskList = document.querySelector('.collection');
+const taskList = document.querySelector('.list-group');
 const clearBtn = document.querySelector('.clear-tasks');
 const filter = document.querySelector('#filter');
 const taskInput = document.querySelector('#task');
@@ -38,7 +38,8 @@ function getTasks() {
 function addTask(e) {
   if (taskInput.value !== '') {
     const li = document.createElement('li');
-    li.className = 'collection-item';
+    li.className =
+      'дist-group-item list-group-item d-flex justify-content-between align-items-center';
     li.appendChild(document.createTextNode(taskInput.value));
     const link = document.createElement('a');
     link.className = 'delete-item secondary-content';
@@ -72,11 +73,9 @@ function storeTaskInLocalStorage(task) {
 
 function removeTask(e) {
   if (e.target.parentElement.classList.contains('delete-item')) {
-    if (confirm('Are You Sure?')) {
-      e.target.parentElement.parentElement.remove();
+    e.target.parentElement.parentElement.remove();
 
-      removeTaskFromLocalStorage(e.target.parentElement.parentElement);
-    }
+    removeTaskFromLocalStorage(e.target.parentElement.parentElement);
   }
 }
 
