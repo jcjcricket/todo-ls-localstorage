@@ -24,7 +24,8 @@ function getTasks() {
 
   tasks.forEach(function (task) {
     const li = document.createElement('li');
-    li.className = 'collection-item';
+    li.className =
+      'list-group-item d-flex justify-content-between align-items-center';
     li.appendChild(document.createTextNode(task));
     const link = document.createElement('a');
     link.className = 'delete-item secondary-content';
@@ -39,7 +40,7 @@ function addTask(e) {
   if (taskInput.value !== '') {
     const li = document.createElement('li');
     li.className =
-      'дist-group-item list-group-item d-flex justify-content-between align-items-center';
+      'list-group-item d-flex justify-content-between align-items-center';
     li.appendChild(document.createTextNode(taskInput.value));
     const link = document.createElement('a');
     link.className = 'delete-item secondary-content';
@@ -111,12 +112,12 @@ function clearTasksFromLocalStorage() {
 function filterTasks(e) {
   const text = e.target.value.toLowerCase();
 
-  document.querySelectorAll('.collection-item').forEach(function (task) {
+  document.querySelectorAll('.list-group-item').forEach(function (task) {
     const item = task.firstChild.textContent;
     if (item.toLowerCase().indexOf(text) != -1) {
-      task.style.display = 'block';
+      task.classList.remove('disabled');
     } else {
-      task.style.display = 'none';
+      task.classList.add('disabled');
     }
   });
 }
